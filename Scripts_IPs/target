@@ -1,0 +1,49 @@
+#!/bin/bash
+
+### TARGET ###
+
+ARCHIVO="/tmp/ip_target.txt"
+
+# Si se pasa la opción --clear, borra el archivo y sale
+if [[ "$1" == "-c" || "$1" == "--clear" ]]; then
+  if [[ -f "$ARCHIVO" ]]; then
+    rm -f "$ARCHIVO"
+    echo "Archivo temporal eliminado: $ARCHIVO"
+  else 
+    echo "El archivo ya no existe: $ARCHIVO"
+  fi
+  exit 0
+fi
+
+# Validación del uso correcto
+if [[ -z "$1" || -z "$2" ]]; then
+    echo "Uso: target <nombre> <ip>"
+    echo "Borrar: target -c o --clear"
+    exit 1
+fi
+
+
+NOMBRE=$1
+IP=$2
+
+
+# Validar longitud del nombre (max 28 caracteres)
+if [[ ${NOMBRE} -gt 28 ]]; then
+    echo "  El nombre no puede tener más de 28 caracteres"
+    exit 1
+fi
+
+
+# Comprobar si el archivo ya tiene dos lineas
+if [[ -f "$ARCHIVO" ]]; then
+    LINEAS=$(wc -l < "$ARCHIVO")
+    if [[ "$LINEAS" -ge 2 ]]; then
+        echo "  Solo se permite 1 Objetivo en $ARCHIVO. No se puede añadir más de 2 lineas."
+        exit 1
+    fi
+fi
+
+
+# Escribe en un archivo temporal que el Panel va a leer
+echo "󰓾  $NOMBRE" >> $ARCHIVO
+echo "󰓾  $IP" >> $ARCHIVO
