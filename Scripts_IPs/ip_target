@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Uso: set_target nombre ip
+# Uso: target
 
 
-ARCHIVO="/tmp/set_target.txt"
+ARCHIVO="/tmp/ip_target.txt"
 
 # Si se pasa la opción --clear, borra el archivo y sale
 if [[ "$1" == "-c" ]]; then
@@ -22,5 +22,5 @@ NOMBRE=$1
 IP=$2
 
 
-# Escribe en un archivo temporal que Polybar va a leer
-echo "%{F#FFFFFF}󰓾  $NOMBRE - $IP%{F-}" > $ARCHIVO
+# Escribe en un archivo temporal que el Panel va a leer
+echo "󰓾  $NOMBRE - $IP" > $ARCHIVO
