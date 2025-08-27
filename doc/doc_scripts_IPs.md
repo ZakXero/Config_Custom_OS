@@ -19,9 +19,14 @@ mv ./Scripts_IPs/ /usr/local/bin
 Añadir al Panel de MATE por cada script que quieras añadir, seleccionar la opción de [comando/command] y añadir la ruta del script.
 Por cada script se le añade su correspondiente ruta:
 ```bash
-cat /usr/local/bin/Scripts_IPs/target
-cat /usr/local/bin/Scripts_IPs/ip_htb
-cat /usr/local/bin/Scripts_IPs/ip_propia
+# Module target
+cat /tmp/ip_target.txt
+
+# Module ip_htb
+bash /usr/local/bin/Scripts_IPs/ip_htb
+
+# Module ip_propia
+bash /usr/local/bin/Scripts_IPs/ip_propia
 ```
 
 
